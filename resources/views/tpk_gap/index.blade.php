@@ -4,7 +4,7 @@
 
 @section('content')
     <h1>Bobot Nilai Gap</h1>
-    @include('buttons.add')
+    {{-- @include('buttons.add') --}}
     <hr>
 
     <table class="table table-hover table-bordered">

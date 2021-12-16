@@ -2,7 +2,8 @@
 
 @section('title','Input Kriteria')
     
-@section('content')
+@section('content')@include('layouts.alert')
+
     <h1>Input Data Kriteria</h1>
     <hr>
     <form action="/tpk21/kriteria/input" method="post" autocomplete="off">

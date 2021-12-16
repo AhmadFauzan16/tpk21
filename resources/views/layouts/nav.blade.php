@@ -25,6 +25,9 @@
           <li class="nav-item">
           <a class="nav-link" aria-current="page" href="/tpk21/gap">Gap</a>
           </li>
+          <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="/tpk21/nilai">Penilaian Pegawai</a>
+          </li>
         </ul>
       </div>
     </div>

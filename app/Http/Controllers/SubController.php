@@ -11,7 +11,7 @@ class SubController extends Controller
     {
         $sub = kriteria_sub::all();
 
-        return view('kriteriasub',compact('sub'));
+        return view('tpk_kriteria.kriteriasub',compact('sub'));
     }
 
     public function input()

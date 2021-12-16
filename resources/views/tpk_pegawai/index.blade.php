@@ -15,6 +15,7 @@
             <th>Nama</th>
             <th>Divisi</th>
             <th>Posisi</th>
+            <th>Status</th>
         </thead>
         <tbody>
             @foreach ($pegawai as $itemPegawai)
@@ -23,6 +24,7 @@
                 <td>{{$itemPegawai->nama}}</td>
                 <td>{{$itemPegawai->divisi}}</td>
                 <td>{{$itemPegawai->posisi}}</td>
+                <td>{{$itemPegawai->status}}</td>
             </tr>
             @endforeach
 

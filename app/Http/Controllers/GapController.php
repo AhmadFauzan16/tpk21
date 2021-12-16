@@ -11,7 +11,7 @@ class GapController extends Controller
     {
         $gap = bobotgap::all();
 
-        return view('gap',compact('gap'));
+        return view('tpk_gap.index',compact('gap'));
     }
 
     public function input()

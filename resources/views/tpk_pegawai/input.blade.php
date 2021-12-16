@@ -27,6 +27,13 @@
                 <option value="Posisi3">Divisi 3</option>
             </select>
         </div>
+        <div class="mb-3">
+            <label for="status" class="form-label">Posisi</label>
+            <select class="form-select" aria-label="Default select example" name="status">
+                <option value="Tetap">Tetap</option>
+                <option value="Kontrak">Kontrak</option>
+            </select>
+        </div>
         @include('buttons.submit')
     </form>
 @endsection

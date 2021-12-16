@@ -28,13 +28,28 @@ class KriteriaController extends Controller
             'bobotSF' => 'required',
         ]);
 
-        $kriteria = new kriteria;
-        $kriteria->kriteria = $request->kriteria;
-        $kriteria->bobot = $request->bobot;
-        $kriteria->bobotCF = $request->bobotCF;
-        $kriteria->bobotSF = $request->bobotSF;
-        $kriteria->save();
+        $cf = $request->bobotCF;
+        $sf = $request->bobotSF;
+        $total = $cf + $sf;
 
-        return redirect('/tpk21/kriteria');
+        $totalkriteria = kriteria::sum('bobot');
+        if ($totalkriteria >= 100) {
+            echo 'total bobot sudah mencapai 100%';
+        }
+        else {
+            if ($total > 100) {
+                echo 'total bobot CF + SF melebihi 100';
+            }
+            else {
+                # code...
+                $kriteria = new kriteria;
+                $kriteria->kriteria = $request->kriteria;
+                $kriteria->bobot = $request->bobot;
+                $kriteria->bobotCF = $request->bobotCF;
+                $kriteria->bobotSF = $request->bobotSF;
+                $kriteria->save();
+                return redirect('/tpk21/kriteria');
+            }
+        }
     }
 }

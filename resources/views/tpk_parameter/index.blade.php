@@ -5,7 +5,7 @@
 @section('content')
     <h1>Parameter</h1>
     <a href="/tpk21/parameter/input">
-        @include('buttons.add')
+        {{-- @include('buttons.add') --}}
     </a>
     <hr>
 
