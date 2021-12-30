@@ -10,11 +10,11 @@
         <form action="/tpk21/pegawai/nilai/update/{id}" method="post" autocomplete="off" class="mt-3">
             @csrf
             <div class="mb-3">
-                @foreach ($pegawai->slice(0,1) as $p)
+                @foreach ($pn->slice(0,1) as $p)
                 <div class="row">
                     <div class="col-6">
                         <label for="idp" class="form-label">ID Pegawai</label>
-                        <input type="text" readonly class="form-control" value="{{$p->id}}" name="idp">  
+                        <input type="text" readonly class="form-control" value="{{$p->id_pegawai}}" name="idp">  
                     </div>
                     <div class="col-6">
                         <label for="nama" class="form-label">Nama Pegawai</label>
@@ -48,10 +48,10 @@
                         @foreach ($pn as $sk)
                         <tr>
                             <td>{{$loop->iteration}}</td>
-                            <td>{{$sk->kriteria}}<input type="text" hidden value="{{$sk->idk}}" name="krit@php echo ++$i; @endphp"></td>
-                            <td>{{$sk->sub}}<input type="text" hidden value="{{$sk->ids}}" name="sub@php echo $i; @endphp"></td>
+                            <td>{{$sk->kriteria}}<input type="text" hidden value="{{$sk->id_k}}" name="krit@php echo ++$i; @endphp"></td>
+                            <td>{{$sk->sub}}<input type="text" hidden value="{{$sk->id_sub}}" name="sub@php echo $i; @endphp"></td>
                             <td>{{$sk->faktor}}</td>
-                            <td>{{$sk->ideal}}</td>
+                            <td>{{$sk->nilai_ideal}}</td>
                             <td><input required class="form-control" value="{{old('nilai') ? old('nilai') : $sk->nilai}}" 
                                 type="number" min="0" max="5" name="nilai@php echo $i; @endphp">
                             </td>

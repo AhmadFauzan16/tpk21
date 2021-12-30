@@ -16,6 +16,8 @@
             <th>Bobot Keseluruhan</th>
             <th>Bobot CF</th>
             <th>Bobot SF</th>
+            <th>Edit</th>
+            <th>Hapus</th>
         </thead>
         <tbody>
             @foreach ($kriteria as $itemkriteria)
@@ -25,6 +27,25 @@
                 <td>{{$itemkriteria->bobot}}</td>
                 <td>{{$itemkriteria->bobotCF}}</td>
                 <td>{{$itemkriteria->bobotSF}}</td>
+                <td>
+                    <a href="/tpk21/kriteria/edit/{{$itemkriteria->id}}">
+                        @include('layouts.buttons.edit')
+                    </a>
+                </td>
+                <td>
+                    @if ($itemkriteria->trashed())
+                        <form method="post" action="/tpk21/kriteria/re/{{$itemkriteria->id}}">
+                            @csrf
+                            @include('layouts.buttons.restore')
+                        </form>
+                    @else
+                        <form method="post" action="/tpk21/kriteria/del/{{$itemkriteria->id}}">
+                            @csrf
+                            @method('delete')
+                            @include('layouts.buttons.delete')
+                        </form>
+                    @endif
+                </td>
             </tr>
             @endforeach
         </tbody>

@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\kriteria;
+use App\Models\kriteria_sub;
+use App\Models\penilaian;
+use App\Models\pegawai;
+use App\Models\nilai;
 
 class KriteriaController extends Controller
 {
@@ -16,7 +20,14 @@ class KriteriaController extends Controller
 
     public function input()
     {
-        return view('tpk_kriteria.input');
+        $totalkriteria = kriteria::sum('bobot');
+        if ($totalkriteria >= 100) {
+            echo 'total bobot sudah mencapai 100%';
+        }
+        else {
+            return view('tpk_kriteria.input');
+        }
+        // return view('tpk_kriteria.input');
     }
 
     public function store(Request $request)
@@ -38,10 +49,9 @@ class KriteriaController extends Controller
         }
         else {
             if ($total > 100) {
-                echo 'total bobot CF + SF melebihi 100';
+                echo 'total bobot melebihi 100';
             }
             else {
-                # code...
                 $kriteria = new kriteria;
                 $kriteria->kriteria = $request->kriteria;
                 $kriteria->bobot = $request->bobot;
@@ -51,5 +61,24 @@ class KriteriaController extends Controller
                 return redirect('/tpk21/kriteria');
             }
         }
+    }
+
+    public function edit($id)
+    {
+        $listk = kriteria::find($id);
+        // echo $listk;
+        return view('tpk_kriteria.edit', compact('listk'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        kriteria::where('id',$id)->update([
+            'kriteria' => $request->input('kriteria'),
+            'bobot' => $request->input('bobot'),
+            'bobotCF' => $request->input('bobotCF'),
+            'bobotSF' => $request->input('bobotSF'),
+        ]);
+
+        return redirect('/tpk21/kriteria');
     }
 }

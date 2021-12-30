@@ -16,6 +16,9 @@
             <th>Divisi</th>
             <th>Posisi</th>
             <th>Status</th>
+            <th>Nilai</th>
+            <th>Edit</th>
+            <th>Hapus</th>
         </thead>
         <tbody>
             @foreach ($pegawai as $itemPegawai)
@@ -25,6 +28,22 @@
                 <td>{{$itemPegawai->divisi}}</td>
                 <td>{{$itemPegawai->posisi}}</td>
                 <td>{{$itemPegawai->status}}</td>
+                <td><a href="/tpk21/pegawai/nilai/{{$itemPegawai->id}}">@include('layouts.buttons.nilai')</a></td>
+                <td><a href="/tpk21/pegawai/edit/{{$itemPegawai->id}}">@include('layouts.buttons.edit')</td>
+                <td>
+                    @if ($itemPegawai->trashed())
+                        <form action="/tpk21/pegawai/re/{{$itemPegawai->id}}" method="post">
+                            @csrf
+                            @include('layouts.buttons.restore')
+                        </form>
+                    @else
+                        <form action="/tpk21/pegawai/del/{{$itemPegawai->id}}" method="post">
+                            @csrf
+                            @method('delete')
+                            @include('layouts.buttons.delete')
+                        </form>
+                    @endif
+                </td>
             </tr>
             @endforeach
 
